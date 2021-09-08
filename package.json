@@ -9,7 +9,8 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "serve-lab": "ionic serve -l"
   },
   "private": true,
   "dependencies": {
@@ -26,7 +27,11 @@
     "@capacitor/haptics": "1.0.3",
     "@capacitor/keyboard": "1.0.3",
     "@capacitor/status-bar": "1.0.3",
+    "@capacitor/storage": "^1.1.0",
+    "@ionic-native/core": "^5.36.0",
+    "@ionic-native/native-storage": "^5.36.0",
     "@ionic/angular": "^5.5.2",
+    "cordova-plugin-nativestorage": "^2.3.2",
     "rxjs": "~6.6.0",
     "tslib": "^2.2.0",
     "zone.js": "~0.11.4"
@@ -43,6 +48,7 @@
     "@angular/language-service": "~12.0.1",
     "@capacitor/cli": "3.2.2",
     "@ionic/angular-toolkit": "^4.0.0",
+    "@ionic/lab": "3.2.10",
     "@types/jasmine": "~3.6.0",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "^12.11.1",
