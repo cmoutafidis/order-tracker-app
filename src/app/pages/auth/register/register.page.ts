@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import {ModalController, NavController} from '@ionic/angular';
+import {AuthService} from '../../../services/auth.service';
+import {AlertService} from '../../../services/alert.service';
+import {LoginPage} from '../login/login.page';
+import {NgForm} from '@angular/forms';
+import ResponseUtil from '../../../utils/response-util';
 
 @Component({
   selector: 'app-register',
@@ -7,9 +13,51 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegisterPage implements OnInit {
 
-  constructor() { }
+  constructor(
+    private modalController: ModalController,
+    private authService: AuthService,
+    private navCtrl: NavController,
+    private alertService: AlertService
+  ) { }
 
   ngOnInit() {
+  }
+
+  dismissRegister() {
+    this.modalController.dismiss();
+  }
+
+  async loginModal() {
+    this.dismissRegister();
+    const modal = await this.modalController.create({ component: LoginPage });
+    return await modal.present;
+  }
+
+  register(form: NgForm) {
+    this.authService.register(form.value.fName, form.value.lName, form.value.email, form.value.password).subscribe(
+      data => {
+        this.authService.login(form.value.email, form.value.password).subscribe(
+          loginData => {
+          },
+          error => {
+            console.log(error);
+          },
+          () => {
+            this.dismissRegister();
+            this.navCtrl.navigateRoot('/test');
+          }
+        );
+        this.alertService.showToast('Success!');
+      },
+      error => {
+        console.log(error);
+        this.alertService.showToast(ResponseUtil.toResponse(error.error).userMessage);
+      },
+      () => {
+        console.log('Successfully registered user');
+        this.modalController.dismiss();
+      }
+    );
   }
 
 }

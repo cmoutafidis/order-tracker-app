@@ -1,4 +1,4 @@
-export class LoginData {
+export interface LoginData {
   username: string;
   access_token: string;
   refresh_token: string;

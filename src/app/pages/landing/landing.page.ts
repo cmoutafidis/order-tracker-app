@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {MenuController, ModalController, NavController} from "@ionic/angular";
-import {AuthService} from "../../services/auth.service";
-import {RegisterPage} from "../auth/register/register.page";
-import {LoginPage} from "../auth/login/login.page";
+import {MenuController, ModalController, NavController} from '@ionic/angular';
+import {AuthService} from '../../services/auth.service';
+import {RegisterPage} from '../auth/register/register.page';
+import {LoginPage} from '../auth/login/login.page';
 
 @Component({
   selector: 'app-landing',

@@ -4,6 +4,7 @@ import {AuthService} from '../../../services/auth.service';
 import {AlertService} from '../../../services/alert.service';
 import {RegisterPage} from '../register/register.page';
 import {NgForm} from '@angular/forms';
+import ResponseUtil from '../../../utils/response-util';
 
 @Component({
   selector: 'app-login',
@@ -40,7 +41,7 @@ export class LoginPage implements OnInit {
         this.alertService.showToast('Logged In!');
       },
       error => {
-        console.error('An error has occurred while logging in', error);
+        this.alertService.showToast(ResponseUtil.toResponse(error.error).userMessage);
       },
       () => {
         this.dismissLogin();
