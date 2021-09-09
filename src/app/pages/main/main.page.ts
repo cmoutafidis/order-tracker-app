@@ -23,11 +23,9 @@ export class MainPage implements OnInit {
   }
 
   ionViewWillEnter() {
-    console.log('Using email', this.email);
     this.authService.fetchUser(this.email)
       .subscribe(
         fetched => {
-          console.log('Successfully fetched user {}', fetched);
           this.user = fetched;
         },
         error => {
