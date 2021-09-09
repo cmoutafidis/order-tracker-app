@@ -34,7 +34,8 @@ export class RegisterPage implements OnInit {
   }
 
   register(form: NgForm) {
-    this.authService.register(form.value.fName, form.value.lName, form.value.email, form.value.password).subscribe(
+    const email = form.value.email;
+    this.authService.register(form.value.fName, form.value.lName, email, form.value.password).subscribe(
       data => {
         this.authService.login(form.value.email, form.value.password).subscribe(
           loginData => {
@@ -44,7 +45,7 @@ export class RegisterPage implements OnInit {
           },
           () => {
             this.dismissRegister();
-            this.navCtrl.navigateRoot('/test');
+            this.navCtrl.navigateRoot('/main', { state: { email } });
           }
         );
         this.alertService.showToast('Success!');

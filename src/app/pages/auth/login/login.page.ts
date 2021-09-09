@@ -36,7 +36,8 @@ export class LoginPage implements OnInit {
   }
 
   login(form: NgForm) {
-    this.authService.login(form.value.email, form.value.password).subscribe(
+    const email = form.value.email;
+    this.authService.login(email, form.value.password).subscribe(
       data => {
         this.alertService.showToast('Logged In!');
       },
@@ -45,7 +46,7 @@ export class LoginPage implements OnInit {
       },
       () => {
         this.dismissLogin();
-        this.navCtrl.navigateRoot('/test');
+        this.navCtrl.navigateRoot('/main', { state: { email } });
       }
     );
   }
